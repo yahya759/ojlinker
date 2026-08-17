@@ -21,9 +21,11 @@ import {
   Menu,
   X,
   Star,
+  Calculator,
   LucideIcon
 } from 'lucide-react';
 import { Logo } from './components/Logo';
+import { AccountingView } from './components/accounting/AccountingView';
 
 interface ToolCardItem {
   id: string;
@@ -168,6 +170,7 @@ const TOOL_CARDS: ToolCardItem[] = [
 export default function App() {
   const [activeNav, setActiveNav] = useState('Features-0');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [view, setView] = useState<'home' | 'accounting'>('home');
 
   return (
     <div
@@ -186,13 +189,16 @@ export default function App() {
 
           {/* Desktop Navigation links */}
           <nav id="nav-links" className="hidden md:flex items-center space-x-7 lg:space-x-10 text-[13px] lg:text-[14px] font-medium">
-            {['Features', 'Pricing', 'Pricing', 'Support'].map((item, idx) => {
-              const isActive = activeNav === `${item}-${idx}`;
+            {['Features', 'Pricing', 'Support'].map((item, idx) => {
+              const isActive = view === 'home' && activeNav === `${item}-${idx}`;
               return (
                 <button
                   key={`${item}-${idx}`}
                   type="button"
-                  onClick={() => setActiveNav(`${item}-${idx}`)}
+                  onClick={() => {
+                    setView('home');
+                    setActiveNav(`${item}-${idx}`);
+                  }}
                   className={`relative py-1 transition-colors cursor-pointer ${
                     isActive ? 'text-[#1A1A1A] font-semibold' : 'text-[#6B7280] hover:text-[#1A1A1A]'
                   }`}
@@ -204,6 +210,19 @@ export default function App() {
                 </button>
               );
             })}
+            <button
+              type="button"
+              onClick={() => setView('accounting')}
+              className={`relative flex items-center gap-1.5 py-1 transition-colors cursor-pointer ${
+                view === 'accounting' ? 'text-[#1A1A1A] font-semibold' : 'text-[#6B7280] hover:text-[#1A1A1A]'
+              }`}
+            >
+              <Calculator className="w-3.5 h-3.5" />
+              المحاسبة
+              {view === 'accounting' && (
+                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#0E9F6E] rounded-full" />
+              )}
+            </button>
           </nav>
 
           <div className="flex items-center gap-3">
@@ -233,16 +252,17 @@ export default function App() {
               id="mobile-dropdown-menu"
               className="absolute top-full left-0 right-0 mt-2 bg-[#FFFFFF] rounded-2xl shadow-xl border border-[#EEF6F1] p-4 flex flex-col space-y-2 z-50 md:hidden"
             >
-              {['Features', 'Pricing', 'Pricing', 'Support'].map((item, idx) => (
+              {['Features', 'Pricing', 'Support'].map((item, idx) => (
                 <button
                   key={`mobile-${item}-${idx}`}
                   type="button"
                   onClick={() => {
+                    setView('home');
                     setActiveNav(`${item}-${idx}`);
                     setMobileMenuOpen(false);
                   }}
                   className={`text-left px-3 py-2 rounded-lg text-[14px] font-medium transition-colors cursor-pointer ${
-                    activeNav === `${item}-${idx}`
+                    view === 'home' && activeNav === `${item}-${idx}`
                       ? 'bg-[#EEF6F1] text-[#0E9F6E] font-semibold'
                       : 'text-[#6B7280] hover:bg-[#EEF6F1]/50 hover:text-[#1A1A1A]'
                   }`}
@@ -250,11 +270,33 @@ export default function App() {
                   {item}
                 </button>
               ))}
+              <button
+                type="button"
+                onClick={() => {
+                  setView('accounting');
+                  setMobileMenuOpen(false);
+                }}
+                className={`flex items-center gap-1.5 text-left px-3 py-2 rounded-lg text-[14px] font-medium transition-colors cursor-pointer ${
+                  view === 'accounting'
+                    ? 'bg-[#EEF6F1] text-[#0E9F6E] font-semibold'
+                    : 'text-[#6B7280] hover:bg-[#EEF6F1]/50 hover:text-[#1A1A1A]'
+                }`}
+              >
+                <Calculator className="w-3.5 h-3.5" />
+                المحاسبة
+              </button>
             </div>
           )}
         </header>
 
+        {view === 'accounting' && (
+          <main id="accounting-page" className="w-full pt-1">
+            <AccountingView />
+          </main>
+        )}
+
         {/* Grid of 12 Cards - Styled with White & #EEF6F1 Alternation */}
+        {view === 'home' && (
         <main
           id="cards-grid"
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-4 sm:gap-5 lg:gap-6 pt-1 pb-10 w-full"
@@ -330,6 +372,7 @@ export default function App() {
             );
           })}
         </main>
+        )}
 
       </div>
     </div>
