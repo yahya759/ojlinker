@@ -1,0 +1,6 @@
+{
+  "name": "SaaS Tools Dashboard",
+  "description": "Pixel-perfect recreation of the SaaS tools grid dashboard UI.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
