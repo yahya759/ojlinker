@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Plus, Trash2, TrendingUp, TrendingDown, Loader2 } from 'lucide-react';
-import { supabase } from '../../lib/supabase';
+import { supabase, isSupabaseConfigured } from '../../lib/supabase';
 import type { LedgerEntry, LedgerKind } from '../../types/accounting';
 
 interface LedgerPanelProps {
@@ -47,6 +47,11 @@ export function LedgerPanel({ kind, accentColor, categorySuggestions }: LedgerPa
   const label = kind === 'revenues' ? 'إيراد' : 'مصروف';
 
   async function fetchEntries() {
+    if (!isSupabaseConfigured) {
+      setError('نظام المحاسبة مش موصول. لازم تضيف VITE_SUPABASE_URL و VITE_SUPABASE_ANON_KEY على الهوست.');
+      setLoading(false);
+      return;
+    }
     setLoading(true);
     setError(null);
     const { data, error: fetchError } = await supabase
