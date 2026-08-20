@@ -30,12 +30,12 @@ function OJLogo({ collapsed }: { collapsed: boolean }) {
   if (collapsed) {
     return (
       <div style={{ width: 36, height: 36, borderRadius: 10, background: 'linear-gradient(135deg,#B8860B,#8B6914)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <span style={{ color: '#fff', fontWeight: 900, fontSize: 13, fontFamily: 'sans-serif' }}>OJ</span>
+        <span style={{ color: '#fff', fontWeight: 900, fontSize: 13, fontFamily: 'sans-serif', direction: 'ltr' }}>OJ</span>
       </div>
     );
   }
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 8, direction: 'ltr' }}>
       <div style={{ width: 36, height: 36, borderRadius: 10, background: 'linear-gradient(135deg,#B8860B,#8B6914)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
         <span style={{ color: '#fff', fontWeight: 900, fontSize: 13, fontFamily: 'sans-serif' }}>OJ</span>
       </div>
