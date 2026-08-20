@@ -13,6 +13,7 @@ import { EmployeesPage } from './components/hr/EmployeesPage';
 import { AttendancePage } from './components/hr/AttendancePage';
 import { PayrollPage } from './components/hr/PayrollPage';
 import { AccountingView } from './components/accounting/AccountingView';
+import { LOGO_SRC } from './assets/logo';
 
 type Page = 'dashboard' | 'employees' | 'attendance' | 'payroll' | 'accounting';
 
@@ -35,10 +36,10 @@ function Sidebar({ page, setPage, collapsed, setCollapsed }: {
       {/* Logo area */}
       <div className="flex items-center justify-between px-4 py-5 border-b border-white/10">
         {!collapsed && (
-          <img src="/ojlinker-logo.png" alt="OJlinker" className="h-9 object-contain" />
+          <img src={LOGO_SRC} alt="OJlinker" className="h-9 object-contain" />
         )}
         {collapsed && (
-          <img src="/ojlinker-logo.png" alt="OJlinker" className="w-9 h-9 object-contain mx-auto" />
+          <img src={LOGO_SRC} alt="OJlinker" className="w-9 h-9 object-contain mx-auto" />
         )}
         {!collapsed && (
           <button onClick={() => setCollapsed(true)} className="text-white/40 hover:text-white cursor-pointer transition-colors">
@@ -111,7 +112,7 @@ function MobileNav({ page, setPage, open, setOpen }: {
       {/* Drawer */}
       <div className={`fixed top-0 right-0 h-full w-64 bg-[#1A2B1F] text-white z-50 flex flex-col transform transition-transform duration-300 md:hidden ${open ? 'translate-x-0' : 'translate-x-full'}`}>
         <div className="flex items-center justify-between px-4 py-5 border-b border-white/10">
-          <img src="/ojlinker-logo.png" alt="OJlinker" className="h-9 object-contain" />
+          <img src={LOGO_SRC} alt="OJlinker" className="h-9 object-contain" />
           <button onClick={() => setOpen(false)} className="text-white/40 hover:text-white cursor-pointer"><X className="w-5 h-5" /></button>
         </div>
         <div className="flex flex-col gap-1 px-2 pt-4 flex-1">
