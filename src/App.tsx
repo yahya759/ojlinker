@@ -13,6 +13,7 @@ import { EmployeesPage } from './components/hr/EmployeesPage';
 import { AttendancePage } from './components/hr/AttendancePage';
 import { PayrollPage } from './components/hr/PayrollPage';
 import { AccountingView } from './components/accounting/AccountingView';
+import { LOGO_SRC } from './assets/logo';
 
 type Page = 'dashboard' | 'employees' | 'attendance' | 'payroll' | 'accounting';
 interface NavItem { id: Page; label: string; icon: React.ReactNode }
@@ -25,25 +26,11 @@ const MAIN_NAV: NavItem[] = [
   { id: 'accounting', label: 'الإيرادات والمصروفات', icon: <TrendingUp className="w-[18px] h-[18px]" /> },
 ];
 
-/* ── Inline logo — no image files, no base64, always renders ── */
 function OJLogo({ collapsed }: { collapsed: boolean }) {
   if (collapsed) {
-    return (
-      <div style={{ width: 36, height: 36, borderRadius: 10, background: 'linear-gradient(135deg,#B8860B,#8B6914)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <span style={{ color: '#fff', fontWeight: 900, fontSize: 13, fontFamily: 'sans-serif', direction: 'ltr' }}>OJ</span>
-      </div>
-    );
+    return <img src={LOGO_SRC} alt="OJlinker" style={{ width: 40, height: 40, objectFit: 'contain' }} />;
   }
-  return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 8, direction: 'ltr' }}>
-      <div style={{ width: 36, height: 36, borderRadius: 10, background: 'linear-gradient(135deg,#B8860B,#8B6914)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-        <span style={{ color: '#fff', fontWeight: 900, fontSize: 13, fontFamily: 'sans-serif' }}>OJ</span>
-      </div>
-      <span style={{ color: '#fff', fontWeight: 800, fontSize: 17, letterSpacing: '-0.3px', fontFamily: 'sans-serif' }}>
-        linker
-      </span>
-    </div>
-  );
+  return <img src={LOGO_SRC} alt="OJlinker" style={{ height: 38, objectFit: 'contain', maxWidth: 160 }} />;
 }
 
 function Sidebar({ page, setPage, collapsed, setCollapsed }: {
