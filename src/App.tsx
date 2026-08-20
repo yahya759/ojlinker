@@ -35,17 +35,10 @@ function Sidebar({ page, setPage, collapsed, setCollapsed }: {
       {/* Logo area */}
       <div className="flex items-center justify-between px-4 py-5 border-b border-white/10">
         {!collapsed && (
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-xl bg-[#0E9F6E] flex items-center justify-center">
-              <span className="text-white text-[13px] font-black">OJ</span>
-            </div>
-            <span className="text-[15px] font-bold tracking-tight">OJlinker</span>
-          </div>
+          <img src="/assets/ojlinker-logo.png" alt="OJlinker" className="h-9 object-contain" />
         )}
         {collapsed && (
-          <div className="w-8 h-8 rounded-xl bg-[#0E9F6E] flex items-center justify-center mx-auto">
-            <span className="text-white text-[13px] font-black">OJ</span>
-          </div>
+          <img src="/assets/ojlinker-logo.png" alt="OJlinker" className="w-9 h-9 object-contain mx-auto" />
         )}
         {!collapsed && (
           <button onClick={() => setCollapsed(true)} className="text-white/40 hover:text-white cursor-pointer transition-colors">
@@ -91,9 +84,9 @@ function Sidebar({ page, setPage, collapsed, setCollapsed }: {
         {/* User chip */}
         {!collapsed && (
           <div className="mt-2 flex items-center gap-2.5 bg-white/8 rounded-xl px-3 py-2.5">
-            <div className="w-8 h-8 rounded-full bg-[#0E9F6E] flex items-center justify-center text-[12px] font-bold shrink-0">ي</div>
+            <div className="w-8 h-8 rounded-full bg-[#0E9F6E] flex items-center justify-center text-[12px] font-bold shrink-0">أ</div>
             <div className="flex flex-col min-w-0">
-              <span className="text-[12px] font-semibold truncate">يحيى</span>
+              <span className="text-[12px] font-semibold truncate">ابو فراس</span>
               <span className="text-[10px] text-white/40 truncate">مدير النظام</span>
             </div>
           </div>
@@ -118,12 +111,7 @@ function MobileNav({ page, setPage, open, setOpen }: {
       {/* Drawer */}
       <div className={`fixed top-0 right-0 h-full w-64 bg-[#1A2B1F] text-white z-50 flex flex-col transform transition-transform duration-300 md:hidden ${open ? 'translate-x-0' : 'translate-x-full'}`}>
         <div className="flex items-center justify-between px-4 py-5 border-b border-white/10">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-xl bg-[#0E9F6E] flex items-center justify-center">
-              <span className="text-white text-[13px] font-black">OJ</span>
-            </div>
-            <span className="text-[15px] font-bold">OJlinker</span>
-          </div>
+          <img src="/assets/ojlinker-logo.png" alt="OJlinker" className="h-9 object-contain" />
           <button onClick={() => setOpen(false)} className="text-white/40 hover:text-white cursor-pointer"><X className="w-5 h-5" /></button>
         </div>
         <div className="flex flex-col gap-1 px-2 pt-4 flex-1">
